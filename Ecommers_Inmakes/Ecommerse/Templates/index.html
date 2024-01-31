@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static '/css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- category -->
+<div class="category">
+  <h1><b>SHOP BY CATEGORY</b></h1>
+
+{% for category in links %}
+  {% if category is None %}
+    <p>Not items found</p>
+  {% else %}
+  <div class="card" id="card-categ" style="height: 12rem; width: 12rem;">
+    <a href="{{ category.get_url }}"><img src="{{ category.image.url }}" class="card-img-top" alt="..." style="height: 11rem; width: 12rem;" ></a>
+    <p class="card-title">{{ category.name }}</p>
+  </div>
+  {% endif %}
+{% endfor %}<br>
+
+  
+  </div>
+</div>
+<br><br><br>
+<!-- end category -->
+
+
+<!-- products view -->
+<div class="a" style="margin-bottom: 10px;">
+  <h1><b>OUR PRODUCTS</b></h1>
+{% for i in products.object_list %}
+  <div class="card" style="width: 13rem; height: 26rem;" >
+    <a href="{{i.get_url}}"><img src="{{i.image.url}}" class="card-img-top" alt="..." style="height: 20rem; width: 13rem;" ></a>
+    <div class="card-body">
+      <p class="card-title">{{i.name}}</p>
+      <p class="card-text">{{i.categorys.name}}</p>
+      <p class="card-text">$ {{i.price}}</p>
+    </div>
+  </div>
+  {% endfor %}<br>
+</div>
+
+<div class="mx-auto">
+    {% for p in products.page_range %}
+      <a href="?page={{p}}" class="btn btn-danger  {% if products.pagination.number == p %} activate {% endif %}">{{p}}</a>
+    {% endfor %}
+ </div>
+<!-- end product view -->
+
+<!-- pagination -->
+<div class="pagination" style="margin-top: 700px;">
+{% if products.has_next %}
+  <a href="?page={{ products.next_page_number }}">Next</a>
+{% endif %}
+
+
+{% for i in products.paginator.page_range %}
+<a href="?page={{i}}" style="margin-left: 10px;"> {{i}} </a>
+{% endfor %}
+
+{% if products.has_previous %}
+  <a href="?page={{ products.previous_page_number }}" style="margin-left: 10px;">Previous</a>
+{% endif %}
+</div>
+<!-- end pagination -->
+
+
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

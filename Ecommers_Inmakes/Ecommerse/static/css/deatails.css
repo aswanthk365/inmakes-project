@@ -1,0 +1,14 @@
+.for-img{
+    height: 500px;
+    width: 30%;
+    border: 1px solid black;
+}
+.for-deatails{
+    height: 500px;
+    width: 40%;
+}
+
+.text{
+    margin-left: 20px;
+    margin-bottom: 10px;
+}

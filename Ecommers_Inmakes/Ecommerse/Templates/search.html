@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static '/css/i.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+<div class="a">
+{% for i in products %}
+  <div class="card" style="width: 15rem; height: 23rem;">
+    <a href="{{i.get_url}}"><img src="{{i.image.url}}" class="card-img-top" alt="..." style="height: 15rem; width: 15rem;" ></a>
+    <div class="card-body">
+      <a href=""><h5 class="card-title">{{i.name}}</h5></a>
+      <p class="card-text">{{i.name}}</p>
+      <p class="card-text">$ {{i.price}}</p>
+    </div>
+  </div>
+  {% empty %}
+    <h3><b> No result found.........</b></h3>
+  {% endfor %}<br>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

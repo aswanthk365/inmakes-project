@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static '/css/deatails.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="deatails" style="width: 100%;">
+    <div class="for-img"style="float: left; height: auto; width: 50%;" >
+        <img src="{{deatails.image.url}}" alt="" style="width: 100%; height: auto;">
+    </div>
+    <div class="for-deatails" style="float: left;height: auto; width: 50%;">
+        <h5 class="text"><b>{{deatails.name}}</b></h5>
+        <h5 class="text">{{deatails.discriptioin}}</h5>
+        <p class="text">---------------------------------------------------------------------------------------</p>
+        <h5 class="text">MRP ₹{{deatails.price}}</h5>
+        <button class="btn btn-success" style="margin-left: 10px;"><a href="{% url 'add_to_cart' deatails.id %}"  style="text-decoration:none" >Add To Cart</a>
+        </button>
+
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+{% endblock %}
